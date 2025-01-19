@@ -68,7 +68,7 @@ namespace AjandaProje.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Kullancilar", (string)null);
+                    b.ToTable("Kullanicilar", (string)null);
                 });
 
             modelBuilder.Entity("AjandaProje.Models.Entities.Not", b =>

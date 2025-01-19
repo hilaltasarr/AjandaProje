@@ -59,6 +59,12 @@ namespace AjandaProje.Controllers
 
             notGetir.Tarih = notGuncelleModel.Tarih;
             notGetir.KullaniciId = notGuncelleModel.KullaniciId;
+
+            if (string.IsNullOrEmpty(notGuncelleModel.Not))
+            {
+                TakvimDetaySil(notGuncelleModel.Tarih, notGuncelleModel.KullaniciId);
+                return RedirectToAction("TakvimGoruntule", "Takvim", new { yil = notGetir.Tarih.Year, ay = notGetir.Tarih.Month });
+            }
             notGetir.Notlar = notGuncelleModel.Not;
 
             _context.Notlar.Update(notGetir);

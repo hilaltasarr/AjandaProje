@@ -16,7 +16,6 @@
                     <input type="hidden" name="kullaniciId" value="@TempData["KullaniciId"]" />
                     <input type="hidden" name="tarih" value="@Model.Tarih.ToString("yyyy-MM-dd")" />
 
-                    <!-- Textarea ve Güncelle butonunu sağ alt köşeye hizalayacağız -->
                     <div class="d-flex flex-column ">
                         <textarea id="notTextarea" name="not" class="form-control mb-3" rows="6" style="font-size: 1rem;" placeholder="Planlarınızı yapmaya başlayın">@Model.Not</textarea>
                         <button type="submit" class="btn btn-warning">Güncelle</button>

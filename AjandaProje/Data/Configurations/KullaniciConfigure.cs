@@ -10,7 +10,7 @@ namespace AjandaProje.Data.Configurations
         public void Configure(EntityTypeBuilder<Kullanici> builder)
         {
             //Hangi Tablo ile eşleşeceği
-            builder.ToTable("Kullancilar");
+            builder.ToTable("Kullanicilar");
 
             //Primary Key Alanı
             builder.HasKey(x => x.Id);

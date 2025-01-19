@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AjandaProje.Migrations
 {
     [DbContext(typeof(SQLContext))]
-    [Migration("20250114175418_ini")]
-    partial class ini
+    [Migration("20250119203650_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,7 +71,7 @@ namespace AjandaProje.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Kullancilar", (string)null);
+                    b.ToTable("Kullanicilar", (string)null);
                 });
 
             modelBuilder.Entity("AjandaProje.Models.Entities.Not", b =>

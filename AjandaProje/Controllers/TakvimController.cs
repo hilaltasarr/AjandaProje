@@ -54,7 +54,7 @@ namespace AjandaProje.Controllers
                 tarihler.Add(null);
             }
 
-            //Bütün ayın içerisindeki bütün günleri al
+            //Ayın içerisindeki bütün günleri al
             for (int i = 1; i <= ayinIcindekiGunler; i++)
             {
                 gunler.Add(i);

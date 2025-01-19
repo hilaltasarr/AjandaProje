@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AjandaProje.Migrations
 {
     /// <inheritdoc />
-    public partial class ini : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Kullancilar",
+                name: "Kullanicilar",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -26,7 +26,7 @@ namespace AjandaProje.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Kullancilar", x => x.Id);
+                    table.PrimaryKey("PK_Kullanicilar", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -49,7 +49,7 @@ namespace AjandaProje.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Kullancilar");
+                name: "Kullanicilar");
 
             migrationBuilder.DropTable(
                 name: "Notlar");

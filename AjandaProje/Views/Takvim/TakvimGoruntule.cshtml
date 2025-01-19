@@ -127,8 +127,8 @@
                 {
                     if (i + j < Model.Gunler.Count && Model.Gunler[i + j].HasValue)
                     {
-                        var tarih = Model.Tarihler[i + j].Value; // Tarih objesi
-                        bool veriVarMi = Model.KullaniciEkliVeriler.Contains(tarih); // Örnek kontrol: Veriler koleksiyonundan kontrol
+                        var tarih = Model.Tarihler[i + j].Value; 
+                        bool veriVarMi = Model.KullaniciEkliVeriler.Contains(tarih);
 
                         <td class="@(veriVarMi ? "highlighted-day" : "")">
                             <a asp-controller="TakvimDetay" asp-action="TakvimDetay" asp-route-tarih="@tarih.ToString("yyyy-MM-dd")" asp-route-kullaniciId="@TempData["KullaniciId"]">
