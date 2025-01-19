@@ -1,0 +1,126 @@
+﻿﻿@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+@model AjandaProje.Models.KayitOlModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol</title>
+    <style>
+        body {
+            background-image: url('/images/kayitol.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 500px;
+            margin: auto;
+            padding: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form {
+            width: 100%;
+            padding: 10px;
+            max-width: 800px;
+            margin-left: 500px;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            margin: auto;
+        }
+
+            .form-row div {
+                width: 48%;
+            }
+
+            .form-row label {
+                display: block;
+                margin-bottom: 5px;
+                font-size: 14px;
+                color: #555;
+            }
+
+            .form-row input {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+            button:hover {
+                background-color: #218838;
+            }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Kayıt Ol</h2>
+        <form asp-controller="Kullanicilar" asp-action="KayitOl" method="post">
+            <div class="form-row">
+                <div>
+                    <label asp-for="Isim" for="Isim">Ad:</label>
+                    <input type="text" asp-for="Isim" id="ad" name="Isim" required>
+                </div>
+                <div>
+                    <label asp-for="Soyisim" for="Soyisim">Soyad:</label>
+                    <input asp-for="Soyisim" type="text" id="Soyisim" name="Soyisim" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label asp-for="Mail" for="Mail">E-Mail:</label>
+                    <input asp-for="Mail" type="text" id="Mail" name="Mail" required>
+                </div>
+                <div>
+                    <label asp-for="KullaniciAdi" for="KullaniciAdi">Kullanıcı Adı:</label>
+                    <input asp-for="KullaniciAdi" type="text" id="KullaniciAdi" name="KullaniciAdi" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label asp-for="Sifre" for="Sifre">Şifre:</label>
+                    <input asp-for="Sifre" type="password" id="Mail" name="Sifre" required>
+                </div>
+                <div>
+                    <label asp-for="TelefonNo" for="TelefonNo">Telefon Numarası:</label>
+                    <input asp-for="TelefonNo" type="text" id="TelefonNo" name="TelefonNo" required>
+                </div>
+            </div>
+            <br>
+            <button type="submit">Kayıt Ol</button>
+
+            <p style="text-align: center;">Sistemimize üye misiniz.   <a asp-controller="Home" asp-action="Index">Giriş Yap</a></p>
+        </form>
+    </div>
+</body>
+</html>

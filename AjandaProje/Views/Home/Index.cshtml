@@ -1,0 +1,94 @@
+﻿﻿@{
+    ViewData["Title"] = "Giriş Yap";
+}
+@model AjandaProje.Models.GirisYapModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap</title>
+    <style>
+    body {
+            background-image: url('/images/background.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            justify-content: center; 
+            height: 100%;
+        }
+
+         .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            width: 300px;
+            margin: auto;
+            padding: 10px;
+        } 
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+            button:hover {
+                background-color: #218838;
+            }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Giriş Yap</h2>
+        <form asp-controller="Kullanicilar" asp-action="GirisYap" method="post">
+            <label asp-for="KullaniciAdi" for="KullaniciAdi">Kullanıcı Adı :</label>
+            <input asp-for="KullaniciAdi" type="text" id="KullaniciAdi" name="KullaniciAdi" required>
+            <label asp-for="Sifre" for="password">Şifre :</label>
+            <input asp-for="Sifre" type="password" id="password" name="Sifre" required>
+            <button type="submit">Giriş Yap</button>
+        </form>
+        <p>Henüz üye değil misiniz? <a asp-controller="Home" asp-action="KayitOl">Kaydolun</a></p>
+
+       
+    </div>
+</body>
+</html>

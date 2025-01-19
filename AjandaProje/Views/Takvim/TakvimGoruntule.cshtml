@@ -1,0 +1,148 @@
+﻿@model TakvimGoruntuleModel
+
+
+@{
+    ViewData["Title"] = $"{Model.Yil} - {@Enum.GetName(typeof(Ay), Model.Ay)} Takvimi";
+}
+
+<style>
+    .calendar {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    }
+
+    .calendar th, .calendar td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 10px;
+    height: 50px;
+    }
+
+    .calendar th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    }
+
+    .calendar caption {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    }
+
+    .calendar-controls {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px auto;
+    max-width: 600px;
+    }
+
+    .calendar-controls button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    }
+
+    .calendar-controls button:hover {
+    background-color: #0056b3;
+    }
+
+    h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    }
+
+    .highlighted-day {
+        background-color: #d4edda; /* Açık yeşil */
+        color: #155724; /* Koyu yeşil metin */
+        font-weight: bold;
+        border: 2px solid #c3e6cb;
+        border-radius: 4px;
+    }
+</style>
+
+@{
+  
+    int oncekiAy = Model.Ay - 1;
+    int oncekiYil = Model.Yil;
+    if (oncekiAy < 1)
+    {
+        oncekiAy = 12;
+        oncekiYil--;
+    }
+
+    int sonrakiAy = Model.Ay + 1;
+    int sonrakiYil = Model.Yil;
+    if (sonrakiAy>12)
+    {
+        sonrakiAy = 1;
+        sonrakiYil++;
+    }
+   
+}
+<div style="text-align: right; margin-right: 20px; margin-top: 10px;">
+    Hoşgeldiniz @ViewBag.TamIsim
+    <br />
+    <a asp-controller="Home" asp-action="Index">
+        Çıkış Yap
+    </a>
+</div>
+
+<h2>@Model.Yil  -  @Enum.GetName(typeof(Ay), Model.Ay) Takvimi</h2>
+<div class="calendar-controls">
+    <a href="@Url.Action("TakvimGoruntule", "Takvim", new { yil =oncekiYil, ay = oncekiAy })"
+       class="btn btn-primary">
+        Önceki Ay
+    </a>
+    <a href="@Url.Action("TakvimGoruntule", "Takvim", new { yil = sonrakiYil, ay = sonrakiAy })"
+       class="btn btn-primary">
+        Sonraki Ay
+    </a>
+</div>
+
+<table class="calendar">
+    <thead>
+        <tr>
+            <th>PZT</th>
+            <th>SAL</th>
+            <th>ÇAR</th>
+            <th>PER</th>
+            <th>CUM</th>
+            <th>CMT</th>
+            <th>PAZ</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Gunler.Count; i += 7)
+        {
+            <tr>
+                @for (int j = 0; j < 7; j++)
+                {
+                    if (i + j < Model.Gunler.Count && Model.Gunler[i + j].HasValue)
+                    {
+                        var tarih = Model.Tarihler[i + j].Value; // Tarih objesi
+                        bool veriVarMi = Model.KullaniciEkliVeriler.Contains(tarih); // Örnek kontrol: Veriler koleksiyonundan kontrol
+
+                        <td class="@(veriVarMi ? "highlighted-day" : "")">
+                            <a asp-controller="TakvimDetay" asp-action="TakvimDetay" asp-route-tarih="@tarih.ToString("yyyy-MM-dd")" asp-route-kullaniciId="@TempData["KullaniciId"]">
+                                @Model.Gunler[i + j].Value
+                            </a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+

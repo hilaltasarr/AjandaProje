@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Update";
+}
+@model NotGoruntuleModel
+<div class="container mt-6 justify-content-center align-items-center" style="max-width: 600px; margin: 0 auto;">
+    <h1 class="modal-title fs-5">@Model.Tarih.Day  @Enum.GetName(typeof(Ay), Model.Tarih.Month)  @Model.Tarih.Year </h1>
+    <div class="modal-header">
+    </div>
+    <div class="form-group">
+        <h2 class="modal-title fs-5">Not : </h2>
+
+        @if (ViewBag.veriVar == true)
+        {
+            <div class="container position-relative">
+                <form asp-controller="TakvimDetay" asp-action="TakvimDetayGuncelle" method="post">
+                    <input type="hidden" name="kullaniciId" value="@TempData["KullaniciId"]" />
+                    <input type="hidden" name="tarih" value="@Model.Tarih.ToString("yyyy-MM-dd")" />
+
+                    <!-- Textarea ve Güncelle butonunu sağ alt köşeye hizalayacağız -->
+                    <div class="d-flex flex-column ">
+                        <textarea id="notTextarea" name="not" class="form-control mb-3" rows="6" style="font-size: 1rem;" placeholder="Planlarınızı yapmaya başlayın">@Model.Not</textarea>
+                        <button type="submit" class="btn btn-warning">Güncelle</button>
+                    </div>
+                </form>
+                <br />
+                <form asp-controller="TakvimDetay" asp-action="TakvimDetaySil" method="post">
+                    <input type="hidden" name="kullaniciId" value="@TempData["KullaniciId"]" />
+                    <input type="hidden" name="tarih" value="@Model.Tarih.ToString("yyyy-MM-dd")" />
+                    <div class="d-flex flex-column">
+                        <button type="submit" class="btn btn-danger" style="bottom: 20px; right: 40px;">Sil</button>
+                    </div>
+                </form>
+                <br />
+                <form asp-controller="Takvim" asp-action="TakvimGoruntule" method="get" style="margin-top: 10px;">
+                    <input type="hidden" name="yil" value="@Model.Tarih.Year" />
+                    <input type="hidden" name="ay" value="@Model.Tarih.Month" />
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Geri Dön</button>
+                </form>
+            </div>
+          
+        }
+        else
+        {
+            <div class="container position-relative">
+                <form asp-controller="TakvimDetay" asp-action="TakvimDetayEkle" method="post">
+                    <input type="hidden" name="kullaniciId" value="@TempData["KullaniciId"]" />
+                    <input type="hidden" name="tarih" value="@Model.Tarih.ToString("yyyy-MM-dd")" />
+
+                    <div class="d-flex flex-column">
+                        <textarea id="notTextarea" name="not" class="form-control mb-3" rows="6" style="font-size: 1rem;" placeholder="Planlarınızı yapmaya başlayın">@Model.Not</textarea>
+                        <button type="submit" class="btn btn-success" style="width: 100%;">Ekle</button>
+                    </div>
+                </form>
+                <br />
+                <form asp-controller="Takvim" asp-action="TakvimGoruntule" method="get" style="margin-top: 10px;">
+                    <input type="hidden" name="yil" value="@Model.Tarih.Year" />
+                    <input type="hidden" name="ay" value="@Model.Tarih.Month" />
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Geri Dön</button>
+                </form>
+            </div>
+        }
+   
+
+    </div>
+
+</div>
+
+</div>
